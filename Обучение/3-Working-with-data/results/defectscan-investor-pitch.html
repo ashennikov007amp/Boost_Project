@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DefectScan — Презентация для инвесторов</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+        }
+
+        .header .tagline {
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+        }
+
+        .header .date {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        /* Key Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .metric-card.primary {
+            border-left: 4px solid var(--primary);
+        }
+
+        .metric-card.danger {
+            border-left: 4px solid var(--danger);
+        }
+
+        .metric-card.warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .metric-card.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .metric-card.primary .metric-value { color: var(--primary); }
+        .metric-card.danger .metric-value { color: var(--danger); }
+        .metric-card.warning .metric-value { color: var(--warning); }
+        .metric-card.success .metric-value { color: var(--success); }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .section-number {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        /* Problem Alert */
+        .problem-alert {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .problem-alert h3 {
+            color: var(--danger);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .problem-alert p {
+            color: var(--gray-700);
+            font-size: 1rem;
+        }
+
+        .problem-alert .highlight {
+            background: white;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--danger);
+            text-align: center;
+        }
+
+        /* Solution Box */
+        .solution-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 1px solid #6ee7b7;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .solution-box h3 {
+            color: var(--success);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .solution-box p {
+            color: var(--gray-700);
+            font-size: 1rem;
+        }
+
+        /* Market Box */
+        .market-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .market-box h4 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .market-box p {
+            color: var(--gray-700);
+        }
+
+        /* Key Insight */
+        .key-insight {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .key-insight h4 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .key-insight p {
+            color: var(--gray-700);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .comparison-table th {
+            background: var(--gray-50);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-600);
+        }
+
+        .comparison-table td {
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr.highlight-row {
+            background: linear-gradient(90deg, #ecfdf5 0%, #d1fae5 100%);
+        }
+
+        .comparison-table tr.highlight-row td {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .feature-card {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .feature-card h4 {
+            font-size: 1.1rem;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        /* Competitor Cards */
+        .competitors-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .competitors-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .competitor-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .competitor-card h4 {
+            font-size: 1rem;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .competitor-card .type-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .competitor-card .type-badge.direct {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .competitor-card .type-badge.indirect {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .competitor-weak {
+            color: var(--danger);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* Quote */
+        .quote {
+            background: var(--gray-50);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-style: italic;
+            color: var(--gray-600);
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pricing-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .pricing-card.recommended {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+            position: relative;
+        }
+
+        .pricing-card.recommended::before {
+            content: 'Рекомендуем';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .pricing-card h4 {
+            font-size: 1.1rem;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .pricing-card .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 16px 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--gray-600);
+        }
+
+        .pricing-card p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        /* Steps */
+        .steps-list {
+            margin-top: 20px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .step-item:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h5 {
+            font-size: 1rem;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        /* Formula Box */
+        .formula-box {
+            background: var(--gray-900);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .formula-box .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .formula-box .formula-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Risk Box */
+        .risk-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .risk-box h4 {
+            color: var(--warning);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .risk-box ul {
+            margin-left: 20px;
+            color: var(--gray-700);
+        }
+
+        .risk-box li {
+            margin-bottom: 8px;
+        }
+
+        /* Verdict Box */
+        .verdict-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid #10b981;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .verdict-box h3 {
+            font-size: 1.8rem;
+            color: var(--success);
+            margin-bottom: 12px;
+        }
+
+        .verdict-box p {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+        }
+
+        .verdict-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 24px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        /* Sources */
+        .sources {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .sources h4 {
+            font-size: 1rem;
+            color: var(--gray-700);
+            margin-bottom: 12px;
+        }
+
+        .sources ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .sources a {
+            display: inline-block;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .sources a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        /* Comparison Side by Side */
+        .side-by-side {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .side-by-side {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .side-box {
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .side-box.before {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+
+        .side-box.after {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+        }
+
+        .side-box h5 {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .side-box.before h5 { color: #991b1b; }
+        .side-box.after h5 { color: #166534; }
+
+        .side-box ul {
+            margin-left: 20px;
+            font-size: 0.9rem;
+        }
+
+        .side-box.before ul { color: #7f1d1d; }
+        .side-box.after ul { color: #14532d; }
+
+        .side-box li {
+            margin-bottom: 6px;
+        }
+
+        /* Stats row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: 8px;
+        }
+
+        .stat-item .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .stat-item .label {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>DefectScan</h1>
+            <p class="tagline">CV-система контроля качества отделки квартир</p>
+            <p class="subtitle">Находим дефекты до того, как их найдёт покупатель</p>
+            <p class="date">Презентация для инвесторов | Февраль 2026</p>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card danger">
+                <div class="metric-value">70-95%</div>
+                <div class="metric-label">Квартир сдаётся с дефектами</div>
+            </div>
+            <div class="metric-card warning">
+                <div class="metric-value">100+ млрд</div>
+                <div class="metric-label">Накоплено штрафов по 214-ФЗ</div>
+            </div>
+            <div class="metric-card primary">
+                <div class="metric-value">8-12 млрд</div>
+                <div class="metric-label">SAM рынок автоматизации</div>
+            </div>
+            <div class="metric-card success">
+                <div class="metric-value">85%</div>
+                <div class="metric-label">Маржинальность продукта</div>
+            </div>
+        </div>
+
+        <!-- Section 1: Problem -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Проблема: застройщики теряют деньги на дефектах</h2>
+            </div>
+
+            <div class="problem-alert">
+                <h3>
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                    С 1 января 2026 года отменён мораторий на штрафы застройщикам
+                </h3>
+                <p>Три года застройщики были защищены от неустоек. Теперь каждый дефект — риск судебного иска. Средняя сумма иска по 214-ФЗ — <strong>1.3 млн рублей</strong>, максимум — до 2.25 млн.</p>
+                <div class="highlight">
+                    Неустойка: 1/150 ставки ЦБ за каждый день просрочки + штраф 5% за отказ
+                </div>
+            </div>
+
+            <h4 style="margin: 24px 0 16px; color: var(--gray-700);">Как выявляют дефекты сейчас</h4>
+
+            <div class="side-by-side">
+                <div class="side-box before">
+                    <h5>Ручной технадзор (текущее решение)</h5>
+                    <ul>
+                        <li>2-3 часа на одну квартиру</li>
+                        <li>Пропуск до 30% дефектов</li>
+                        <li>Субъективность оценки прораба</li>
+                        <li>Нет доказательной базы для суда</li>
+                        <li>Конфликт интересов: прораб проверяет своих людей</li>
+                    </ul>
+                </div>
+                <div class="side-box after">
+                    <h5>DefectScan (наше решение)</h5>
+                    <ul>
+                        <li>15-30 минут на квартиру</li>
+                        <li>Точность 85%+ критичных дефектов</li>
+                        <li>Объективная AI-оценка</li>
+                        <li>Отчёт с timestamps для суда</li>
+                        <li>Независимая проверка без конфликта интересов</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="key-insight">
+                <h4>Регуляторный триггер</h4>
+                <p>Отмена моратория создала срочную потребность в инструментах контроля качества. Застройщики, которые не успеют внедрить контроль, получат волну исков в 2026-2027 годах. Это окно возможностей для DefectScan.</p>
+            </div>
+        </div>
+
+        <!-- Section 2: Solution -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Решение: AI находит дефекты за человека</h2>
+            </div>
+
+            <div class="solution-box">
+                <h3>DefectScan — CV-система автоматического выявления дефектов отделки</h3>
+                <p>Прораб фотографирует квартиру на смартфон. AI анализирует фото, находит дефекты, классифицирует их по СНиП и формирует отчёт с координатами для устранения.</p>
+            </div>
+
+            <h4 style="margin: 24px 0 16px; color: var(--gray-700);">Ключевые возможности</h4>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>
+                        <span class="feature-icon">AI</span>
+                        Автораспознавание дефектов
+                    </h4>
+                    <p>CV-модель выявляет трещины, пятна, неровности, кривизну стен. Точность 85%+ на критичных дефектах.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>
+                        <span class="feature-icon">x6</span>
+                        В 6 раз быстрее
+                    </h4>
+                    <p>Проверка квартиры за 15-30 минут вместо 2-3 часов. 100 квартир за 3 дня вместо 3 недель.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>
+                        <span class="feature-icon">СН</span>
+                        Классификация по СНиП
+                    </h4>
+                    <p>Автоматическая привязка к СНиП 3.04.01-87 и ГОСТ. Сразу понятно, что критично для сдачи.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>
+                        <span class="feature-icon">DOC</span>
+                        Доказательная база
+                    </h4>
+                    <p>Отчёт с фото, timestamps и координатами дефектов. Защита от претензий «этого не было».</p>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula">
+                    Фото со смартфона → AI-анализ → Список дефектов + приоритеты → Отчёт для подрядчика
+                </div>
+                <div class="formula-desc">
+                    Простой workflow: не нужно специальное оборудование, работает со дня регистрации
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Market -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Рынок: $30 млрд глобально, 8-12 млрд рублей в России</h2>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="value">45-55 млрд</div>
+                    <div class="label">TAM (контроль качества)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="value">8-12 млрд</div>
+                    <div class="label">SAM (автоматизация)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="value">400-600 млн</div>
+                    <div class="label">SOM (1-2 год)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="value">3%</div>
+                    <div class="label">Целевой охват рынка</div>
+                </div>
+            </div>
+
+            <div class="market-box">
+                <h4>Тренды рынка</h4>
+                <table class="comparison-table" style="margin: 0;">
+                    <tbody>
+                        <tr>
+                            <td><strong>AI в строительстве</strong></td>
+                            <td>$4.86 млрд (2025) → $22.68 млрд к 2032</td>
+                            <td style="color: var(--success); font-weight: 600;">CAGR 24.6%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Глобальный ConTech</strong></td>
+                            <td>$7.26 млрд (2024) → $30.28 млрд к 2034</td>
+                            <td style="color: var(--success); font-weight: 600;">CAGR 16.8%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PropTech в России</strong></td>
+                            <td>~39 млрд руб. (2023)</td>
+                            <td style="color: var(--success); font-weight: 600;">+27.8% за год</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ввод жилья в РФ</strong></td>
+                            <td>108 млн м² в 2025</td>
+                            <td style="color: var(--success); font-weight: 600;">Стабильный рост</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="key-insight">
+                <h4>Почему сейчас</h4>
+                <p><strong>46% всех инвестиций в ConTech</strong> в 2025 году направлено в AI-решения. Рынок созрел: отмена моратория создаёт срочность, BIM становится обязательным, 70%+ компаний увеличили ИТ-бюджеты. DefectScan выходит в правильный момент.</p>
+            </div>
+        </div>
+
+        <!-- Section 4: Competitors -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Конкуренты: никто не закрывает нишу AI-контроля отделки</h2>
+            </div>
+
+            <p style="color: var(--gray-600); margin-bottom: 24px;">
+                Рынок фрагментирован: комплексные системы избыточны, простые — не имеют AI. DefectScan занимает незанятую нишу.
+            </p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>Самолёт 10D</th>
+                        <th>PlanRadar</th>
+                        <th>Техзор</th>
+                        <th style="background: #dbeafe;">DefectScan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AI-распознавание</strong></td>
+                        <td style="color: var(--success);">Да</td>
+                        <td style="color: var(--danger);">Нет</td>
+                        <td style="color: var(--danger);">Нет</td>
+                        <td style="color: var(--success); font-weight: 600;">Да</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Скорость проверки</strong></td>
+                        <td>Средняя</td>
+                        <td>2-3 часа</td>
+                        <td>Средняя</td>
+                        <td style="color: var(--success); font-weight: 600;">15-30 мин</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Простота внедрения</strong></td>
+                        <td style="color: var(--danger);">Месяцы</td>
+                        <td>Недели</td>
+                        <td>Недели</td>
+                        <td style="color: var(--success); font-weight: 600;">Дни</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Цена входа</strong></td>
+                        <td style="color: var(--danger);">Высокая</td>
+                        <td>Средняя</td>
+                        <td>Средняя</td>
+                        <td style="color: var(--success); font-weight: 600;">Доступная</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Фокус на отделке</strong></td>
+                        <td>Часть системы</td>
+                        <td>Нет</td>
+                        <td>Частично</td>
+                        <td style="color: var(--success); font-weight: 600;">Core</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Классификация СНиП</strong></td>
+                        <td>Частично</td>
+                        <td style="color: var(--danger);">Нет</td>
+                        <td style="color: var(--danger);">Нет</td>
+                        <td style="color: var(--success); font-weight: 600;">Авто</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="competitors-grid" style="margin-top: 30px;">
+                <div class="competitor-card">
+                    <h4>Самолёт 10D</h4>
+                    <span class="type-badge direct">Прямой конкурент</span>
+                    <p>Комплексная экосистема: 38 модулей, 3 млрд руб. инвестиций. AI Monitoring есть, но система избыточна для средних застройщиков.</p>
+                    <p class="competitor-weak">Слабость: сложность, стоимость, заточенность под процессы «Самолёта»</p>
+                </div>
+                <div class="competitor-card">
+                    <h4>PlanRadar</h4>
+                    <span class="type-badge indirect">Косвенный конкурент</span>
+                    <p>Международный стандарт документооборота. 170K+ пользователей, интеграции с 200+ приложениями. Но нет AI — только ручная фиксация.</p>
+                    <p class="competitor-weak">Слабость: нет автораспознавания, 2-3 часа на квартиру</p>
+                </div>
+                <div class="competitor-card">
+                    <h4>Техзор</h4>
+                    <span class="type-badge indirect">Косвенный конкурент</span>
+                    <p>Технадзор для застройщиков МКД. 10+ млн м² подключено. Шахматка помещений, гарантийное обслуживание.</p>
+                    <p class="competitor-weak">Слабость: нет AI, ручная фиксация нарушений</p>
+                </div>
+                <div class="competitor-card">
+                    <h4>Точно</h4>
+                    <span class="type-badge direct">Прямой конкурент</span>
+                    <p>Платформа связи мастеров с девелоперами. $10 млн инвестиций. CV на обучении, но фокус на процессе отделки, не на приёмке.</p>
+                    <p class="competitor-weak">Слабость: низкая точность AI, не для финальной приёмки</p>
+                </div>
+            </div>
+
+            <div class="formula-box" style="margin-top: 30px;">
+                <div class="formula">
+                    Отстройка: AI-first + Специализация на отделке + Простота + Доступная цена
+                </div>
+                <div class="formula-desc">
+                    DefectScan — не «ещё один модуль», а специализированный инструмент для одной задачи
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Business Model -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Бизнес-модель: оплата за квартиру или подписка</h2>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h4>За квартиру</h4>
+                    <div class="price">800-1 500 <span>руб.</span></div>
+                    <p>Для пилотов и небольших объёмов. Понятный ROI: ручная приёмка стоит 5 000-8 000 руб.</p>
+                </div>
+                <div class="pricing-card recommended">
+                    <h4>Подписка</h4>
+                    <div class="price">80-120K <span>руб./мес</span></div>
+                    <p>Для средних застройщиков. До 100 квартир в месяц. Стабильный денежный поток.</p>
+                </div>
+                <div class="pricing-card">
+                    <h4>Enterprise</h4>
+                    <div class="price">300K-1M <span>руб./мес</span></div>
+                    <p>Для топ-50 застройщиков. Глубокая интеграция с BIM и бизнес-процессами.</p>
+                </div>
+            </div>
+
+            <div class="stats-row" style="margin-top: 30px;">
+                <div class="stat-item">
+                    <div class="value" style="color: var(--success);">85%</div>
+                    <div class="label">Маржинальность</div>
+                </div>
+                <div class="stat-item">
+                    <div class="value" style="color: var(--success);">3800-8700</div>
+                    <div class="label">LTV/CAC</div>
+                </div>
+                <div class="stat-item">
+                    <div class="value">6-12 мес</div>
+                    <div class="label">Payback</div>
+                </div>
+                <div class="stat-item">
+                    <div class="value">x6-10</div>
+                    <div class="label">ROI для клиента</div>
+                </div>
+            </div>
+
+            <div class="key-insight">
+                <h4>Экономика для клиента</h4>
+                <p><strong>Экономия на штрафах:</strong> средний иск 1.3 млн руб. Одна предотвращённая претензия окупает год подписки.<br>
+                <strong>Экономия времени:</strong> 15 минут вместо 3 часов = x12 эффективность инспектора.<br>
+                <strong>Снижение переделок:</strong> раннее выявление → устранение до приёмки покупателем.</p>
+            </div>
+        </div>
+
+        <!-- Section 6: Go-to-Market -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Go-to-Market: от пилотов к масштабированию</h2>
+            </div>
+
+            <div class="steps-list">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>Технический POC (сейчас)</h5>
+                        <p>Собрать 500+ фото дефектов с реальных объектов. Проверить точность распознавания ≥85%. Измерить ложноположительные ≤10%.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5>Платные пилоты (Q1 2026)</h5>
+                        <p>3-5 застройщиков из топ-50. Цена пилота: 50-100 тыс. руб. за 10 квартир. Критерий Go: ≥2 оплаченных пилота до демо.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5>Юридическая валидация (Q1 2026)</h5>
+                        <p>Получить заключение от адвокатов по 214-ФЗ: можно ли использовать AI-отчёты как доказательную базу в суде.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5>Масштабирование (Q2-Q4 2026)</h5>
+                        <p>Выход на средних застройщиков (не топ-50). Подписочная модель. Цель: 3% целевого рынка = 400-600 млн руб./год.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="market-box" style="margin-top: 24px;">
+                <h4>Целевые сегменты</h4>
+                <table class="comparison-table" style="margin: 0;">
+                    <thead>
+                        <tr>
+                            <th>Сегмент</th>
+                            <th>Big Job</th>
+                            <th>Готовность платить</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Крупные застройщики</strong></td>
+                            <td>Сдавать в срок без штрафов и претензий</td>
+                            <td style="color: var(--success);">Высокая</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Средние застройщики</strong></td>
+                            <td>Защита от исков после отмены моратория</td>
+                            <td style="color: var(--success);">Высокая</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Генподрядчики отделки</strong></td>
+                            <td>Сдавать работы с первого раза, сохранить маржу</td>
+                            <td style="color: var(--warning);">Средняя</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section 7: Risks -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">Риски и митигация</h2>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Риск</th>
+                        <th>Вероятность</th>
+                        <th>Влияние</th>
+                        <th>Митигация</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Точность CV &lt;85%</strong></td>
+                        <td style="color: var(--warning);">Средняя</td>
+                        <td style="color: var(--danger);">Критичное</td>
+                        <td>POC до масштабирования; human-in-the-loop для валидации</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Юридическая значимость отчётов</strong></td>
+                        <td style="color: var(--warning);">Средняя</td>
+                        <td style="color: var(--danger);">Критичное</td>
+                        <td>Юридическое заключение; timestamps и метаданные</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Саботаж линейного персонала</strong></td>
+                        <td style="color: var(--warning);">Средняя</td>
+                        <td>Высокое</td>
+                        <td>Валидация качества фото; простой UX; обучение</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Самолёт 10D снизит цены</strong></td>
+                        <td style="color: var(--success);">Низкая</td>
+                        <td>Высокое</td>
+                        <td>Скорость выхода; фокус на средних застройщиках</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Продление моратория</strong></td>
+                        <td style="color: var(--success);">Низкая</td>
+                        <td>Высокое</td>
+                        <td>Ценность сохраняется: скорость и объективность</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="risk-box" style="margin-top: 24px;">
+                <h4>Критические допущения для проверки</h4>
+                <ul>
+                    <li><strong>Техническая точность:</strong> распознавание дефектов ≥85% на реальных фото с объектов</li>
+                    <li><strong>Юридическая значимость:</strong> AI-отчёты принимаются судами как доказательство</li>
+                    <li><strong>Adoption:</strong> прорабы готовы использовать веб-интерфейс на стройке</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Verdict -->
+        <div class="verdict-box">
+            <div class="verdict-badge">GO</div>
+            <h3>Рекомендация: запускать</h3>
+            <p>DefectScan решает реальную и острую проблему. Рынок созрел, регуляторный триггер сработал, конкуренты не закрывают нишу AI-контроля отделки. Экономика сходится: маржа 85%, LTV/CAC 3800-8700. Критические допущения требуют проверки на пилотах.</p>
+        </div>
+
+        <!-- Summary -->
+        <div class="section" style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); color: white;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 24px; text-align: center;">Ключевые тезисы для инвестора</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
+                <div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #60a5fa;">8-12 млрд</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">SAM в России</div>
+                </div>
+                <div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #34d399;">85%</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">Маржинальность</div>
+                </div>
+                <div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #fbbf24;">24.6%</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">CAGR AI в строительстве</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 12px;">
+                <p style="text-align: center; font-size: 1.1rem; margin: 0;">
+                    <strong>Позиционирование:</strong> «Найдите дефекты до того, как их найдёт покупатель»<br><br>
+                    <strong>AI-система, которая:</strong> проверяет квартиру за 15 минут вместо 3 часов, находит 85%+ критичных дефектов, формирует доказательную базу для защиты от штрафов по 214-ФЗ.
+                </p>
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2 class="section-title">Источники</h2>
+            </div>
+
+            <div class="sources">
+                <h4>Исходные документы анализа:</h4>
+                <ul>
+                    <li><a href="competitor-research.html">Исследование конкурентов</a></li>
+                    <li><a href="market-trends-research.html">Тренды рынка ConTech/AI</a></li>
+                    <li><a href="market-report.html">Маркет-репорт DefectScan</a></li>
+                    <li><a href="differentiation-strategy.html">Стратегия отстройки</a></li>
+                </ul>
+            </div>
+
+            <div class="sources" style="margin-top: 20px; padding-top: 20px;">
+                <h4>Внешние источники:</h4>
+                <ul>
+                    <li><a href="https://www.consultant.ru/legalnews/28812/" target="_blank">КонсультантПлюс — отмена моратория</a></li>
+                    <li><a href="https://www.prof-priemka.ru/" target="_blank">Профприёмка — статистика дефектов</a></li>
+                    <li><a href="https://samolet10d.ru/" target="_blank">Самолёт 10D</a></li>
+                    <li><a href="https://www.planradar.com/cis/" target="_blank">PlanRadar</a></li>
+                    <li><a href="https://tehzor.com/" target="_blank">Техзор</a></li>
+                    <li><a href="https://www.tadviser.ru/" target="_blank">TAdviser — аналитика</a></li>
+                    <li><a href="https://erzrf.ru/" target="_blank">ЕИСЖС — статистика жилья</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            DefectScan — CV-система контроля качества отделки квартир<br>
+            Презентация для инвесторов | Февраль 2026<br><br>
+            <em>Документ сформирован на основе анализа 8 конкурентов, трендов рынка ConTech/AI, регуляторных изменений 214-ФЗ</em>
+        </div>
+    </div>
+</body>
+</html>
