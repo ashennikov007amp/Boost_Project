@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маркет-репорт DefectScan — GO</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: var(--gray-900); margin-bottom: 10px; }
+        .meta { color: var(--gray-600); margin-bottom: 30px; font-size: 0.9rem; }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        h2 {
+            font-size: 1.3rem;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        h3 { font-size: 1.1rem; color: var(--gray-800); margin: 20px 0 12px; }
+        p { margin-bottom: 12px; color: var(--gray-700); }
+        ul, ol { margin-left: 24px; margin-bottom: 16px; color: var(--gray-700); }
+        li { margin-bottom: 8px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        th { background: var(--gray-100); font-weight: 600; color: var(--gray-700); }
+        a { color: var(--primary); }
+        strong { color: var(--gray-900); }
+        .verdict-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .verdict-box h2 {
+            border: none;
+            padding: 0;
+            margin: 0 0 12px 0;
+            color: var(--success);
+            font-size: 1.5rem;
+        }
+        .verdict-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 24px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .highlight h4 { margin-top: 0; color: var(--primary); }
+        .warning-box {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .warning-box h4 { margin-top: 0; color: var(--warning); }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: var(--gray-100);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+        .competitor-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+        .competitor-card h4 { margin: 0 0 8px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="defectscan-investor-pitch.html" class="back-link">← Вернуться к презентации</a>
+
+        <h1>Анализ идеи: DefectScan</h1>
+        <p class="meta">Маркет-репорт | 4 февраля 2026 | Версия 3.0</p>
+
+        <div class="verdict-box">
+            <div class="verdict-badge">GO</div>
+            <h2>Рекомендация: запускать</h2>
+            <p style="color: var(--gray-700);">Уверенность: medium</p>
+        </div>
+
+        <div class="section">
+            <h2>Итоговая рекомендация</h2>
+            <p>DefectScan решает реальную и острую проблему застройщиков — защиту от штрафов по 214-ФЗ и потребительского экстремизма. Все пять сегментов демонстрируют высокую готовность к переключению: боль от ручного технадзора очевидна (пропуск до 30% дефектов, субъективность оценок, отсутствие доказательной базы).</p>
+
+            <p><strong>Экономика сходится:</strong> маржа 85%, LTV/CAC от 3800 до 8700.</p>
+
+            <div class="warning-box">
+                <h4>Критические допущения для проверки</h4>
+                <ol>
+                    <li>Техническая точность распознавания дефектов на реальных фото (≥85%)</li>
+                    <li>Юридическая значимость AI-отчётов в судах</li>
+                    <li>Готовность линейного персонала (прорабов) использовать веб-интерфейс на стройке</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Контекст продукта</h2>
+            <table>
+                <tr>
+                    <td><strong>Название</strong></td>
+                    <td>DefectScan</td>
+                </tr>
+                <tr>
+                    <td><strong>Стадия</strong></td>
+                    <td>Идея</td>
+                </tr>
+                <tr>
+                    <td><strong>Охват рынка (цель)</strong></td>
+                    <td>3%</td>
+                </tr>
+            </table>
+
+            <h3>Ценностное предложение</h3>
+            <ul>
+                <li><strong>Снижение риска:</strong> раннее выявление дефектов до приёмки покупателем</li>
+                <li><strong>Защита от шантажа:</strong> покупатели не смогут использовать дефекты как рычаг давления</li>
+                <li><strong>Контроль на каждом этапе:</strong> проверка после штукатурки, покраски, установки окон</li>
+                <li><strong>Своевременная сдача:</strong> раннее устранение → сдача в срок → отсутствие неустоек</li>
+                <li><strong>Доказательная база:</strong> объективный протокол с timestamps для суда</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Глобальный рынок</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">45-55 млрд</div>
+                    <div class="label">TAM (контроль качества РФ)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">8-12 млрд</div>
+                    <div class="label">SAM (автоматизация)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">400-600 млн</div>
+                    <div class="label">SOM (1-2 год)</div>
+                </div>
+            </div>
+
+            <p><strong>TAM:</strong> Рынок контроля качества в строительстве РФ. Включает всех застройщиков, сдающих жилье с отделкой (~60% новостроек).</p>
+            <p><strong>SAM:</strong> Рынок автоматизированного контроля отделки. Включает технологически продвинутых застройщиков (топ-500).</p>
+            <p><strong>SOM:</strong> Достижимый рынок для стартапа на 1-2 год (доля 3-5% целевого сегмента).</p>
+        </div>
+
+        <div class="section">
+            <h2>Конкуренты</h2>
+
+            <div class="competitor-card">
+                <h4>Аитерус (Aiterus)</h4>
+                <p><strong>Тип:</strong> Прямой | <strong>Цена:</strong> от 100 000 руб./мес</p>
+                <p><strong>Сильные стороны:</strong> 360° съемка и LiDAR, сопоставление с BIM, -70% времени на инспекции</p>
+                <p><strong>Слабые стороны:</strong> Высокая стоимость, сложность оборудования</p>
+            </div>
+
+            <div class="competitor-card">
+                <h4>QMonitoring</h4>
+                <p><strong>Тип:</strong> Прямой | <strong>Цена:</strong> ~100-150 тыс. руб./мес</p>
+                <p><strong>Сильные стороны:</strong> Видеоаналитика на базе ИИ, резидент Сколково</p>
+                <p><strong>Слабые стороны:</strong> Ориентация на общую видеоаналитику, не на дефекты отделки</p>
+            </div>
+
+            <div class="competitor-card">
+                <h4>Пуск (РосСтройКонтроль)</h4>
+                <p><strong>Тип:</strong> Прямой | <strong>Цена:</strong> Госфинансирование</p>
+                <p><strong>Сильные стороны:</strong> Дроны для помещений, поддержка Минстроя, 10 мин на этаж</p>
+                <p><strong>Слабые стороны:</strong> Ориентация на госсектор, стадия разработки</p>
+            </div>
+
+            <div class="competitor-card">
+                <h4>Традиционный технадзор</h4>
+                <p><strong>Тип:</strong> Косвенный | <strong>Цена:</strong> 50-150 тыс. руб./мес за объект</p>
+                <p><strong>Сильные стороны:</strong> Привычный формат, юридическая ответственность</p>
+                <p><strong>Слабые стороны:</strong> Человеческий фактор, низкая скорость, невозможность 100% охвата</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ценообразование</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Модель</th>
+                        <th>Цена</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>За квартиру</strong></td>
+                        <td>800-1 500 руб.</td>
+                        <td>Понятный ROI, ниже ручной проверки (3-10 тыс. руб.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Подписка SaaS</strong></td>
+                        <td>80-120 тыс. руб./мес</td>
+                        <td>Для средних застройщиков, до 100 квартир/мес</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enterprise</strong></td>
+                        <td>300K - 1M руб./мес</td>
+                        <td>Топ-50 застройщиков, глубокая интеграция</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Ключевые риски</h2>
+            <ul>
+                <li><strong>Техническая точность:</strong> распознавание через обычные фото может оказаться недостаточным (пыль, плохое освещение)</li>
+                <li><strong>Юридическая значимость:</strong> AI-отчёты не подтверждены — суды могут не принимать их без экспертизы</li>
+                <li><strong>Саботаж персонала:</strong> прорабы могут отказаться фотографировать или делать это некачественно</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Ключевые возможности</h2>
+            <ul>
+                <li>Рынок новостроек в РФ — сотни тысяч квартир ежегодно</li>
+                <li>Отсутствие специализированных AI-решений для контроля финишной отделки</li>
+                <li>Возможность стать стандартом отрасли через интеграцию с требованиями ГОСТ и СНиП</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Следующие шаги</h2>
+            <ol>
+                <li><strong>Технический POC:</strong> собрать 500+ реальных фото дефектов, измерить точность (цель ≥85%)</li>
+                <li><strong>Юридическое заключение:</strong> возможность использования AI-отчётов как доказательной базы</li>
+                <li><strong>Платные пилоты:</strong> 3-5 застройщиков из топ-50, цена 50-100 тыс. руб.</li>
+                <li><strong>Полевой тест UX:</strong> дать прорабам прототип, измерить % качественных фото</li>
+                <li><strong>MVP:</strong> начать с 5-7 самых частых типов дефектов</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>Альтернативные направления</h2>
+            <ol>
+                <li><strong>Zoom-in:</strong> Сервис юридической фиксации состояния квартиры с timestamp (без сложного AI)</li>
+                <li><strong>Сегмент:</strong> Генподрядчики отделочных работ вместо застройщиков</li>
+                <li><strong>Бизнес-модель:</strong> Страхование качества — DefectScan как гарант с финансовой ответственностью</li>
+                <li><strong>Канал:</strong> Партнёрство с производителями отделочных материалов (Knauf, Weber)</li>
+                <li><strong>Платформа:</strong> Маркетплейс проверенных отделочных бригад</li>
+                <li><strong>Технология:</strong> LiDAR-сканирование вместо обычных фото</li>
+            </ol>
+        </div>
+
+        <p style="margin-top: 30px; text-align: center; color: var(--gray-600);">
+            <a href="defectscan-investor-pitch.html">← Вернуться к презентации</a>
+        </p>
+    </div>
+</body>
+</html>

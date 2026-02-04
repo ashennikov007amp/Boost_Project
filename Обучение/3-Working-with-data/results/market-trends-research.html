@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренды рынка ConTech/AI — DefectScan</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: var(--gray-900); margin-bottom: 10px; }
+        .meta { color: var(--gray-600); margin-bottom: 30px; font-size: 0.9rem; }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        h2 {
+            font-size: 1.3rem;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        h3 { font-size: 1.1rem; color: var(--gray-800); margin: 20px 0 12px; }
+        p { margin-bottom: 12px; color: var(--gray-700); }
+        ul, ol { margin-left: 24px; margin-bottom: 16px; color: var(--gray-700); }
+        li { margin-bottom: 8px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        th { background: var(--gray-100); font-weight: 600; color: var(--gray-700); }
+        a { color: var(--primary); }
+        .highlight {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .highlight h4 { margin-top: 0; color: var(--primary); }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: var(--gray-100);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+        strong { color: var(--gray-900); }
+        .trend-up { color: var(--success); }
+        .trend-down { color: var(--danger); }
+        .warning-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .warning-box h4 { margin-top: 0; color: var(--danger); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="defectscan-investor-pitch.html" class="back-link">← Вернуться к презентации</a>
+
+        <h1>Исследование трендов рынка</h1>
+        <p class="meta">ConTech / AI-контроль качества в строительстве | 4 февраля 2026</p>
+
+        <div class="section">
+            <h2>1. Размер рынка</h2>
+
+            <h3>Глобальный рынок ConTech</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">$7.26 млрд</div>
+                    <div class="label">TAM 2024</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">$30.28 млрд</div>
+                    <div class="label">Прогноз 2034</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value" style="color: var(--success);">16.8%</div>
+                    <div class="label">CAGR</div>
+                </div>
+            </div>
+
+            <h3>AI в строительстве</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">$4.86 млрд</div>
+                    <div class="label">2025</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">$22.68 млрд</div>
+                    <div class="label">Прогноз 2032</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value" style="color: var(--success);">24.6%</div>
+                    <div class="label">CAGR</div>
+                </div>
+            </div>
+
+            <h3>Рынок Computer Vision</h3>
+            <ul>
+                <li><strong>Глобальный CV:</strong> $19.82 млрд (2024) → $58.29 млрд к 2030</li>
+                <li><strong>CAGR:</strong> 19.8% (2025-2030)</li>
+                <li><strong>Сегмент контроля качества:</strong> 17.12% рынка CV (крупнейший сегмент)</li>
+            </ul>
+
+            <h3>PropTech в России</h3>
+            <ul>
+                <li><strong>TAM:</strong> ~39 млрд руб. (2023)</li>
+                <li><strong>Рост:</strong> +27.8% за 2023 год</li>
+                <li><strong>Прогноз:</strong> рост в 4 раза к 2028 году</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>2. Инвестиционная активность</h2>
+
+            <div class="highlight">
+                <h4>Глобальные инвестиции в ConTech 2025</h4>
+                <ul>
+                    <li><strong>Q1-Q3 2025:</strong> $3.55 млрд только в Q1, рост +89% к Q3 2024</li>
+                    <li><strong>AI-focused funding:</strong> 46% всех инвестиций в ConTech</li>
+                    <li><strong>Q1 2026:</strong> $521 млн в AI-ConTech (максимум с 2021)</li>
+                    <li><strong>Прогноз:</strong> 90% инвесторов планируют увеличить инвестиции в ConTech в 2026</li>
+                </ul>
+            </div>
+
+            <h3>Венчурный рынок России (2024)</h3>
+            <table>
+                <tr>
+                    <td><strong>Объём</strong></td>
+                    <td>113 сделок на 8 млрд руб.</td>
+                </tr>
+                <tr>
+                    <td><strong>Средний чек</strong></td>
+                    <td>5-50 млн руб. (50 сделок)</td>
+                </tr>
+                <tr>
+                    <td><strong>Девелоперы-инвесторы</strong></td>
+                    <td>10-15% в среднем, до 30% в Москве и СПб</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>3. Технологические тренды</h2>
+
+            <h3 class="trend-up">Растущие технологии</h3>
+            <ol>
+                <li><strong>AI и Computer Vision для контроля качества</strong>
+                    <ul>
+                        <li>Автоматическое выявление дефектов с точностью до 99.9%</li>
+                        <li>Real-time мониторинг строительных площадок</li>
+                        <li>Интеграция с дронами и мобильными устройствами</li>
+                    </ul>
+                </li>
+                <li><strong>BIM (Building Information Modeling)</strong>
+                    <ul>
+                        <li>Обязательное применение с 01.07.2024 для МКД</li>
+                        <li>С 01.01.2025 — для малоэтажного строительства</li>
+                    </ul>
+                </li>
+                <li><strong>Облачные SaaS-платформы</strong>
+                    <ul>
+                        <li>Низкий порог входа для средних застройщиков</li>
+                        <li>Быстрое развёртывание и обновления</li>
+                    </ul>
+                </li>
+                <li><strong>Мультимодальные AI-модели</strong>
+                    <ul>
+                        <li>GPT-4V, Claude Vision для анализа изображений</li>
+                        <li>Обработка фото без сложной разметки датасетов</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3 class="trend-down">Устаревающие подходы</h3>
+            <ol>
+                <li><strong>Ручной визуальный контроль качества</strong> — субъективность, низкая скорость</li>
+                <li><strong>Западные ERP-системы</strong> — уход с российского рынка</li>
+                <li><strong>On-premise решения</strong> — переход к SaaS-модели</li>
+                <li><strong>Бумажный документооборот</strong> — цифровизация</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>4. Регуляторные изменения</h2>
+
+            <div class="warning-box">
+                <h4>Отмена моратория на неустойки (214-ФЗ)</h4>
+                <table>
+                    <tr>
+                        <td><strong>Дата отмены</strong></td>
+                        <td>1 января 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Накопленные обязательства</strong></td>
+                        <td>>100 млрд руб. штрафов</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Квартиры с просрочкой</strong></td>
+                        <td>~40 000 объектов</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Неустойка</strong></td>
+                        <td>1/150 ставки ЦБ за каждый день просрочки</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Штраф за отказ</strong></td>
+                        <td>5% от присуждённой суммы</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Статистика дефектов</h3>
+            <ul>
+                <li><strong>98-99%</strong> новостроек сдаются с дефектами</li>
+                <li><strong>77 дефектов</strong> — среднее количество в квартире без отделки</li>
+                <li><strong>140+ дефектов</strong> — выявляется в отдельных случаях</li>
+                <li><strong>60%</strong> квартир — обратная тяга в вентканалах</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>5. Прогноз на 2-3 года</h2>
+
+            <h3 class="trend-up">Что будет расти</h3>
+            <ol>
+                <li><strong>AI-решения для контроля качества</strong> — CAGR 24-33%, 46%+ инвестиций направлено в AI</li>
+                <li><strong>Спрос на инструменты контроля качества</strong> — отмена моратория создаёт потребность</li>
+                <li><strong>BIM-интеграции</strong> — обязательное требование</li>
+                <li><strong>Облачные SaaS-решения</strong> — низкий порог входа</li>
+            </ol>
+
+            <h3>Окна возможностей</h3>
+            <div class="highlight">
+                <ol>
+                    <li><strong>CV-система контроля качества для российского рынка</strong> — нет явных локальных лидеров</li>
+                    <li><strong>Интеграция с BIM-системами</strong> — обязательность BIM</li>
+                    <li><strong>B2B SaaS для региональных застройщиков</strong> — 70% застройщиков не в Москве/СПб</li>
+                    <li><strong>Партнёрство с профессиональными приёмщиками</strong> — канал на B2C</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Рекомендации для продукта</h2>
+
+            <h3>Фокус на:</h3>
+            <ul>
+                <li><strong>Отмену моратория</strong> — позиционировать как инструмент защиты от штрафов</li>
+                <li><strong>Скорость и объективность</strong> — 15-30 минут на квартиру, AI-оценка</li>
+                <li><strong>Доказательную базу</strong> — фото с timestamps для судебных споров</li>
+                <li><strong>BIM-интеграцию в roadmap</strong> — обязательное требование рынка</li>
+                <li><strong>Мобильность</strong> — работа со смартфона</li>
+            </ul>
+
+            <h3>Избегать:</h3>
+            <ul>
+                <li>B2C-сегмента на старте — низкий чек, высокий CAC</li>
+                <li>Сложных интеграций в MVP — BIM, CRM на следующие версии</li>
+                <li>Завышенных обещаний по точности — реалистичные 85%+</li>
+                <li>Длинных циклов разработки — рынок созрел сейчас</li>
+            </ul>
+        </div>
+
+        <p style="margin-top: 30px; text-align: center; color: var(--gray-600);">
+            <a href="defectscan-investor-pitch.html">← Вернуться к презентации</a>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Исследование конкурентов — DefectScan</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: var(--gray-900); margin-bottom: 10px; }
+        .meta { color: var(--gray-600); margin-bottom: 30px; font-size: 0.9rem; }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        h2 {
+            font-size: 1.3rem;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        h3 { font-size: 1.1rem; color: var(--gray-800); margin: 20px 0 12px; }
+        h4 { font-size: 1rem; color: var(--gray-700); margin: 16px 0 8px; }
+        p { margin-bottom: 12px; color: var(--gray-700); }
+        ul, ol { margin-left: 24px; margin-bottom: 16px; color: var(--gray-700); }
+        li { margin-bottom: 8px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        th { background: var(--gray-100); font-weight: 600; color: var(--gray-700); }
+        a { color: var(--primary); }
+        .highlight {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .highlight h4 { margin-top: 0; color: var(--primary); }
+        .competitor-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+        .competitor-card h4 { margin-top: 0; }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tag.direct { background: #fee2e2; color: #991b1b; }
+        .tag.indirect { background: #fef3c7; color: #92400e; }
+        strong { color: var(--gray-900); }
+        blockquote {
+            border-left: 3px solid var(--primary);
+            padding-left: 16px;
+            margin: 16px 0;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="defectscan-investor-pitch.html" class="back-link">← Вернуться к презентации</a>
+
+        <h1>Исследование конкурентов</h1>
+        <p class="meta">Система контроля качества отделки квартир | 4 февраля 2026</p>
+
+        <div class="section">
+            <h2>1. Обзор рынка</h2>
+            <p>Российский рынок строительного контроля переживает активную цифровизацию. С 1 января 2026 года отменён мораторий на взыскание неустоек с застройщиков, что резко повышает интерес к инструментам контроля качества.</p>
+
+            <div class="highlight">
+                <h4>Ключевая статистика</h4>
+                <p><strong>70-95% квартир в новостройках сдаются с дефектами</strong></p>
+            </div>
+
+            <h3>Ключевые тренды:</h3>
+            <ul>
+                <li><strong>Регуляторное давление:</strong> новый СП 543.1325800.2024 по строительному контролю (введён в январе 2025)</li>
+                <li><strong>Цифровизация:</strong> переход от бумажных журналов к мобильным приложениям и облачным системам</li>
+                <li><strong>AI/CV технологии:</strong> компьютерное зрение занимает 35% в структуре ИИ-решений для промышленности</li>
+                <li><strong>Государственная поддержка:</strong> в регионах запускаются пилотные проекты по внедрению ИИ в строительстве</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>2. Список конкурентов</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Сайт</th>
+                        <th>Тип конкурента</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>«Точно»</td>
+                        <td>—</td>
+                        <td><span class="tag direct">Прямой</span></td>
+                    </tr>
+                    <tr>
+                        <td>Самолёт 10D</td>
+                        <td><a href="https://samolet10d.ru/" target="_blank">samolet10d.ru</a></td>
+                        <td><span class="tag direct">Прямой</span></td>
+                    </tr>
+                    <tr>
+                        <td>PlanRadar</td>
+                        <td><a href="https://www.planradar.com/cis/" target="_blank">planradar.com/cis</a></td>
+                        <td><span class="tag indirect">Косвенный</span></td>
+                    </tr>
+                    <tr>
+                        <td>Project Point</td>
+                        <td><a href="https://projectpoint.ru/" target="_blank">projectpoint.ru</a></td>
+                        <td><span class="tag indirect">Косвенный</span></td>
+                    </tr>
+                    <tr>
+                        <td>iFlat</td>
+                        <td><a href="https://iflat.io/" target="_blank">iflat.io</a></td>
+                        <td><span class="tag indirect">Косвенный</span></td>
+                    </tr>
+                    <tr>
+                        <td>Техзор</td>
+                        <td><a href="https://tehzor.com/" target="_blank">tehzor.com</a></td>
+                        <td><span class="tag indirect">Косвенный</span></td>
+                    </tr>
+                    <tr>
+                        <td>Приёмка Про</td>
+                        <td><a href="https://priemka-pro.ru/" target="_blank">priemka-pro.ru</a></td>
+                        <td><span class="tag indirect">Косвенный</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>3. Детальный анализ конкурентов</h2>
+
+            <div class="competitor-card">
+                <h4>«Точно» <span class="tag direct">Прямой</span></h4>
+                <p><strong>Позиционирование:</strong> Платформа, связывающая мастеров по отделке с девелоперами. Позволяет удалённо контролировать ход работ через фотофиксацию.</p>
+                <p><strong>Ключевые фичи:</strong></p>
+                <ul>
+                    <li>Задания мастерам с инструкциями и критериями качества</li>
+                    <li>Фотофиксация выполненных работ</li>
+                    <li>Алгоритм распознавания качества по фотографии (обучается)</li>
+                    <li>Рейтинговая система мастеров</li>
+                </ul>
+                <p><strong>Инвестиции:</strong> $10 млн от proptech-фонда</p>
+                <p style="color: var(--danger);"><strong>Слабости:</strong> Не ориентирован на финальную приёмку; низкая точность AI; узкий фокус</p>
+            </div>
+
+            <div class="competitor-card">
+                <h4>Самолёт 10D <span class="tag direct">Прямой</span></h4>
+                <p><strong>Позиционирование:</strong> Цифровая экосистема для управления полным циклом строительства. Продукт крупнейшего застройщика России.</p>
+                <p><strong>Ключевые фичи:</strong></p>
+                <ul>
+                    <li>38 связанных модулей</li>
+                    <li>AI Monitoring — автоматический анализ хода строительства и отделки с помощью CV</li>
+                    <li>Контроль качества с интерактивной картой объекта</li>
+                    <li>Сквозной график строительства</li>
+                </ul>
+                <p><strong>Инвестиции:</strong> 3 млрд руб. в разработку</p>
+                <p><strong>Результаты:</strong> Сроки строительства 18-24 мес. vs 33-36 у конкурентов; снижение стоимости на 15%</p>
+                <p style="color: var(--danger);"><strong>Слабости:</strong> Избыточен для небольших застройщиков; сложность внедрения; заточен под процессы «Самолёта»</p>
+            </div>
+
+            <div class="competitor-card">
+                <h4>PlanRadar <span class="tag indirect">Косвенный</span></h4>
+                <p><strong>Позиционирование:</strong> Цифровая документация, коммуникация и отчётность для строительства. Международный стандарт.</p>
+                <p><strong>Ключевые фичи:</strong></p>
+                <ul>
+                    <li>Управление дефектами и составление дефектных ведомостей</li>
+                    <li>Интеграция с 200+ приложениями</li>
+                    <li>SiteView — съёмка в формате 360°</li>
+                    <li>Управление BIM-моделями</li>
+                </ul>
+                <p><strong>Цены:</strong> От 26€/пользователь/месяц</p>
+                <p><strong>Масштаб:</strong> 170 000+ пользователей в 75 странах</p>
+                <p style="color: var(--danger);"><strong>Слабости:</strong> Нет автоматического распознавания дефектов; долгое освоение; негибкая модель ценообразования</p>
+            </div>
+
+            <div class="competitor-card">
+                <h4>Техзор <span class="tag indirect">Косвенный</span></h4>
+                <p><strong>Позиционирование:</strong> Облачное решение для технического надзора, контроля строительства, приёмки и гарантийного обслуживания МКД.</p>
+                <p><strong>Ключевые фичи:</strong></p>
+                <ul>
+                    <li>Онлайн-шахматка помещений</li>
+                    <li>Цифровые планы</li>
+                    <li>Аналитика по замечаниям</li>
+                    <li>Гарантийное обслуживание</li>
+                </ul>
+                <p><strong>Цены:</strong> От 35 000 руб./месяц</p>
+                <p><strong>Масштаб:</strong> 10+ млн м² подключено</p>
+                <p style="color: var(--danger);"><strong>Слабости:</strong> Нет AI; ручная фиксация нарушений</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Сравнительная матрица</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>Точно</th>
+                        <th>Самолёт 10D</th>
+                        <th>PlanRadar</th>
+                        <th>Техзор</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AI/CV распознавание</strong></td>
+                        <td>Частично</td>
+                        <td style="color: var(--success);">Да</td>
+                        <td style="color: var(--danger);">Нет</td>
+                        <td style="color: var(--danger);">Нет</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Цена (мин.)</strong></td>
+                        <td>Не раскрыта</td>
+                        <td>Высокая</td>
+                        <td>От 26€/мес</td>
+                        <td>От 35K/мес</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Целевой сегмент</strong></td>
+                        <td>Девелоперы + мастера</td>
+                        <td>Крупные девелоперы</td>
+                        <td>Строительные компании</td>
+                        <td>Застройщики МКД</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Главное УТП</strong></td>
+                        <td>Связь с мастерами</td>
+                        <td>Комплексная экосистема</td>
+                        <td>Международный опыт</td>
+                        <td>Фокус на МКД</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>5. Незакрытые работы [Jobs]</h2>
+            <ol>
+                <li><strong>Автоматическое распознавание дефектов отделки с высокой точностью</strong> — ни один конкурент не предлагает CV-решение специально для выявления дефектов отделки с заявленной точностью 85%+</li>
+                <li><strong>Быстрая проверка квартиры перед сдачей дольщику</strong> — существующие решения ориентированы на процесс стройки, а не на финальную приёмку</li>
+                <li><strong>Защита застройщика от претензий после отмены моратория</strong> — нет продуктов, явно позиционированных под новую регуляторную реальность 2026 года</li>
+                <li><strong>Доступное решение для небольших застройщиков</strong> — существующие платформы ориентированы на крупных игроков</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>6. Возможности для дифференциации</h2>
+            <div class="highlight">
+                <h4>Рекомендуемое позиционирование</h4>
+                <blockquote>«Защита застройщика от штрафов 2026: AI-система выявляет дефекты отделки за 15 минут с точностью 85%»</blockquote>
+            </div>
+            <h4>Ключевые месседжи:</h4>
+            <ol>
+                <li><strong>Для застройщиков:</strong> «Найдите дефекты до того, как их найдёт покупатель»</li>
+                <li><strong>Регуляторный триггер:</strong> «Мораторий отменён — каждый дефект = риск штрафа»</li>
+                <li><strong>Скорость:</strong> «Проверка квартиры за 15 минут вместо 3 часов»</li>
+                <li><strong>Объективность:</strong> «AI не пропустит трещину и не примет взятку»</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>7. Рекомендации по ценообразованию</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Модель</th>
+                        <th>Цена</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>За квартиру</strong></td>
+                        <td>500-1 500 руб.</td>
+                        <td>Для пилотов и небольших объёмов. Сравнение: ручная приёмка 5 000-8 000 руб.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Подписка</strong></td>
+                        <td>100-200 тыс. руб./мес</td>
+                        <td>Безлимит на объект для постоянных клиентов</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p style="margin-top: 30px; text-align: center; color: var(--gray-600);">
+            <a href="defectscan-investor-pitch.html">← Вернуться к презентации</a>
+        </p>
+    </div>
+</body>
+</html>

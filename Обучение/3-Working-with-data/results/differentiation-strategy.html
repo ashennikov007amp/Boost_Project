@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стратегия отстройки — DefectScan</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: var(--gray-900); margin-bottom: 10px; }
+        .meta { color: var(--gray-600); margin-bottom: 30px; font-size: 0.9rem; }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        h2 {
+            font-size: 1.3rem;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        h3 { font-size: 1.1rem; color: var(--gray-800); margin: 20px 0 12px; }
+        h4 { font-size: 1rem; color: var(--gray-700); margin: 16px 0 8px; }
+        p { margin-bottom: 12px; color: var(--gray-700); }
+        ul, ol { margin-left: 24px; margin-bottom: 16px; color: var(--gray-700); }
+        li { margin-bottom: 8px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        th { background: var(--gray-100); font-weight: 600; color: var(--gray-700); }
+        a { color: var(--primary); }
+        strong { color: var(--gray-900); }
+        .highlight {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .highlight h4 { margin-top: 0; color: var(--primary); }
+        .success-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 1px solid #6ee7b7;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .success-box h4 { margin-top: 0; color: var(--success); }
+        blockquote {
+            border-left: 3px solid var(--primary);
+            padding-left: 16px;
+            margin: 16px 0;
+            color: var(--gray-600);
+            font-style: italic;
+            background: var(--gray-50);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+        }
+        .battle-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+        .battle-card h4 { margin: 0 0 12px 0; color: var(--gray-900); }
+        .vs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .vs-col { font-size: 0.9rem; }
+        .vs-col.them { color: var(--danger); }
+        .vs-col.us { color: var(--success); }
+        .feature-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+        .feature-card h4 { margin: 0 0 8px 0; }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tag.must { background: #fee2e2; color: #991b1b; }
+        .tag.diff { background: #dbeafe; color: #1e40af; }
+        .tag.nice { background: #f3f4f6; color: #374151; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="defectscan-investor-pitch.html" class="back-link">← Вернуться к презентации</a>
+
+        <h1>Стратегия отстройки</h1>
+        <p class="meta">Система контроля качества отделки квартир | 4 февраля 2026</p>
+
+        <div class="section">
+            <h2>1. Big Job сегмента</h2>
+
+            <div class="highlight">
+                <h4>Застройщики крупных ЖК</h4>
+                <blockquote style="background: transparent; border: none; padding: 0; margin: 0;">
+                    <strong>Хочу</strong> сдавать объекты в срок без штрафов и претензий, <strong>чтобы</strong> сохранить маржинальность проекта и репутацию компании.
+                </blockquote>
+            </div>
+
+            <div class="highlight">
+                <h4>Генподрядчики отделочных работ</h4>
+                <blockquote style="background: transparent; border: none; padding: 0; margin: 0;">
+                    <strong>Хочу</strong> сдавать работы с первого раза без переделок, <strong>чтобы</strong> сохранить маржу и получить следующие заказы.
+                </blockquote>
+            </div>
+
+            <h3>Core Jobs с критериями успеха</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Core Job</th>
+                        <th>Критерии успеха</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Job 1:</strong> Выявить дефекты до приёмки покупателем</td>
+                        <td>85%+ критичных дефектов; 15-30 мин; автоотчёт с фото</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Job 2:</strong> Объективно оценить качество работ подрядчиков</td>
+                        <td>Без «человеческого фактора»; timestamps; классификация по СНиП</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Job 3:</strong> Понять реальный статус готовности к сдаче</td>
+                        <td>Статус по всем квартирам; приоритизация; прогноз</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>2. Матрица критериев успеха</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>Самолёт 10D</th>
+                        <th>PlanRadar</th>
+                        <th>Техзор</th>
+                        <th style="background: #dbeafe;">DefectScan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Скорость (&lt;30 мин)</strong></td>
+                        <td>⚠️</td>
+                        <td>❌</td>
+                        <td>⚠️</td>
+                        <td style="color: var(--success);">✅</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Автовыявление дефектов</strong></td>
+                        <td style="color: var(--success);">✅</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td style="color: var(--success);">✅</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Точность ≥85%</strong></td>
+                        <td>⚠️</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td style="color: var(--success);">✅</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Объективность</strong></td>
+                        <td style="color: var(--success);">✅</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td style="color: var(--success);">✅</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Автоклассификация СНиП</strong></td>
+                        <td>⚠️</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td style="color: var(--success);">✅</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Простота внедрения</strong></td>
+                        <td>❌</td>
+                        <td>⚠️</td>
+                        <td>⚠️</td>
+                        <td style="color: var(--success);">✅</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Доступная цена</strong></td>
+                        <td>❌</td>
+                        <td>⚠️</td>
+                        <td>⚠️</td>
+                        <td style="color: var(--success);">✅</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; color: var(--gray-600);">✅ хорошо, ⚠️ средне, ❌ плохо, — неприменимо</p>
+        </div>
+
+        <div class="section">
+            <h2>3. Точки создания ценности</h2>
+
+            <h3>Недообслуженные критерии (главный фокус)</h3>
+
+            <div class="feature-card">
+                <h4>Критерий 1: Автоматическое выявление дефектов отделки</h4>
+                <p><strong>Почему конкуренты не закрывают:</strong></p>
+                <ul>
+                    <li><strong>Технически сложно:</strong> CV для строительных дефектов — нетривиальная задача</li>
+                    <li><strong>Не приоритет:</strong> большинство фокусируются на документообороте</li>
+                </ul>
+                <p><strong>Наша возможность:</strong> Специализированное CV-решение только для отделки</p>
+                <p><strong>Механика:</strong> AI делает работу инспектора (забрать работу на себя)</p>
+            </div>
+
+            <div class="feature-card">
+                <h4>Критерий 2: Скорость проверки (15-30 минут vs 2-3 часа)</h4>
+                <p><strong>Почему конкуренты не закрывают:</strong> Все требуют ручного ввода каждого дефекта</p>
+                <p><strong>Наша возможность:</strong> Сфотографировал → получил список дефектов автоматически</p>
+                <p><strong>Механика:</strong> Сократить время с 2-3 часов до 15-30 минут (×6)</p>
+            </div>
+
+            <div class="feature-card">
+                <h4>Критерий 3: Объективность оценки</h4>
+                <p><strong>Почему конкуренты не закрывают:</strong> Человек решает, что считать дефектом; конфликт интересов</p>
+                <p><strong>Наша возможность:</strong> AI не берёт взяток и не устаёт к концу дня</p>
+                <p><strong>Механика:</strong> Гарантировать одинаковый стандарт для всех квартир</p>
+            </div>
+
+            <div class="feature-card">
+                <h4>Критерий 4: Простота внедрения (дни, не месяцы)</h4>
+                <p><strong>Почему конкуренты не закрывают:</strong> Комплексность, enterprise-фокус</p>
+                <p><strong>Наша возможность:</strong> Веб-приложение, работает сразу после регистрации</p>
+                <p><strong>Механика:</strong> Убираем этапы настройки, обучения, интеграции</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Четыре силы для нашего продукта</h2>
+
+            <div class="success-box">
+                <h4>Тянут к нам (добавочная ценность)</h4>
+                <ul>
+                    <li>Единственное специализированное CV-решение для дефектов отделки</li>
+                    <li>В 6 раз быстрее: 30 минут vs 3 часа</li>
+                    <li>Объективность: AI-оценка без человеческого фактора</li>
+                    <li>Автоматическая классификация по СНиП и 214-ФЗ</li>
+                    <li>Простой старт: работает со дня регистрации</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h4>От чего убегут к нам (проблемы конкурентов)</h4>
+                <ul>
+                    <li><strong>От Самолёт 10D:</strong> «Не хочу внедрять 38 модулей, мне нужен только контроль качества»</li>
+                    <li><strong>От PlanRadar/Техзор:</strong> «Устал от ручной фиксации каждого дефекта»</li>
+                    <li><strong>От ручной приёмки:</strong> «Прорабы пропускают дефекты, потом получаю претензии»</li>
+                    <li><strong>От отсутствия системы:</strong> «Мораторий отменён — каждый дефект = риск штрафа»</li>
+                </ul>
+            </div>
+
+            <h3>Как снижаем страхи к нам</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Страх</th>
+                        <th>Как снижаем</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>«А точность AI правда 85%?»</td>
+                        <td>Бесплатный пилот на 5 квартирах; публикуем сравнение с приёмщиками</td>
+                    </tr>
+                    <tr>
+                        <td>«AI пропустит важный дефект»</td>
+                        <td>Человек валидирует результаты; AI — помощник, не замена</td>
+                    </tr>
+                    <tr>
+                        <td>«Ещё одно обучение»</td>
+                        <td>Интерфейс как камера телефона: сфотографировал → результат</td>
+                    </tr>
+                    <tr>
+                        <td>«Стартап закроется»</td>
+                        <td>Экспорт отчётов в стандартных форматах; данные принадлежат клиенту</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>5. От ценности к фичам</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Фича</th>
+                        <th>Критерий успеха</th>
+                        <th>Приоритет</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AI-распознавание дефектов</strong></td>
+                        <td>Выявление 85%+ критичных</td>
+                        <td><span class="tag must">Must-have</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Валидация качества фото</strong></td>
+                        <td>Точность распознавания</td>
+                        <td><span class="tag must">Must-have</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Автоклассификация критичности</strong></td>
+                        <td>Приоритизация по СНиП</td>
+                        <td><span class="tag diff">Дифференциатор</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Отчёт с timestamps</strong></td>
+                        <td>Доказательная база для суда</td>
+                        <td><span class="tag must">Must-have</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Валидация человеком</strong></td>
+                        <td>Снижение FP ≤10%</td>
+                        <td><span class="tag must">Must-have</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Мгновенный старт</strong></td>
+                        <td>Начать за минуты</td>
+                        <td><span class="tag diff">Дифференциатор</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>BIM-интеграция</strong></td>
+                        <td>Связь с моделью</td>
+                        <td><span class="tag nice">v2</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>6. Battle Cards — отстройка от конкурентов</h2>
+
+            <div class="battle-card">
+                <h4>vs Самолёт 10D</h4>
+                <div class="vs-grid">
+                    <div class="vs-col them">
+                        <strong>Они:</strong>
+                        <ul>
+                            <li>38 модулей, полная экосистема</li>
+                            <li>Месяцы внедрения</li>
+                            <li>Заточено под «Самолёт»</li>
+                            <li>Подписка на всю экосистему</li>
+                        </ul>
+                    </div>
+                    <div class="vs-col us">
+                        <strong>Мы:</strong>
+                        <ul>
+                            <li>Один инструмент — контроль качества</li>
+                            <li>Начинаете сегодня</li>
+                            <li>Работает с любыми процессами</li>
+                            <li>Платите только за проверки</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 12px;"><strong>Когда выбирают нас:</strong> Не нужна экосистема; хотят быстрый старт; бюджет ограничен</p>
+            </div>
+
+            <div class="battle-card">
+                <h4>vs PlanRadar / Техзор / Project Point</h4>
+                <div class="vs-grid">
+                    <div class="vs-col them">
+                        <strong>Они:</strong>
+                        <ul>
+                            <li>Ручная фиксация каждого дефекта</li>
+                            <li>2-3 часа на квартиру</li>
+                            <li>Инспектор решает, что считать дефектом</li>
+                            <li>Нет классификации по СНиП</li>
+                        </ul>
+                    </div>
+                    <div class="vs-col us">
+                        <strong>Мы:</strong>
+                        <ul>
+                            <li>AI находит дефекты автоматически</li>
+                            <li>15-30 минут на квартиру</li>
+                            <li>AI оценивает объективно</li>
+                            <li>Автоприоритизация по критичности</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 12px;"><strong>Когда выбирают нас:</strong> Устали от ручной работы; нужна скорость; хотят объективность</p>
+            </div>
+
+            <div class="battle-card">
+                <h4>vs Ручная приёмка специалистами</h4>
+                <div class="vs-grid">
+                    <div class="vs-col them">
+                        <strong>Они:</strong>
+                        <ul>
+                            <li>5 000-8 000 руб. за квартиру</li>
+                            <li>Зависит от качества специалиста</li>
+                            <li>Нет цифрового следа</li>
+                            <li>Нужно ждать специалиста</li>
+                        </ul>
+                    </div>
+                    <div class="vs-col us">
+                        <strong>Мы:</strong>
+                        <ul>
+                            <li>500-1 500 руб. за квартиру</li>
+                            <li>Одинаковый стандарт всегда</li>
+                            <li>Отчёт с timestamps как доказательство</li>
+                            <li>Проверяйте сами, когда удобно</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 12px;"><strong>Когда выбирают нас:</strong> Много квартир; нужна экономия; важна доказательная база</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>7. Рекомендуемое позиционирование</h2>
+
+            <div class="success-box" style="text-align: center;">
+                <h4 style="font-size: 1.3rem;">«Найдите дефекты до того, как их найдёт покупатель»</h4>
+                <p style="font-size: 1.1rem; margin: 16px 0 0 0;">DefectAI — CV-система, которая автоматически выявляет дефекты отделки по фото за 15 минут с точностью 85%.<br>Защита застройщика от штрафов в 2026 году.</p>
+            </div>
+
+            <h3>Ключевые месседжи по сегментам</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Для кого</th>
+                        <th>Месседж</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Директор по строительству</strong></td>
+                        <td>«Мораторий отменён — каждый дефект = риск штрафа. DefectAI находит их до покупателя»</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Руководитель УКС</strong></td>
+                        <td>«Проверка квартиры за 15 минут вместо 3 часов. AI не пропустит трещину к концу дня»</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Генподрядчик</strong></td>
+                        <td>«Сдавайте работы с первого раза. Объективная проверка без претензий»</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p style="margin-top: 30px; text-align: center; color: var(--gray-600);">
+            <a href="defectscan-investor-pitch.html">← Вернуться к презентации</a>
+        </p>
+    </div>
+</body>
+</html>
